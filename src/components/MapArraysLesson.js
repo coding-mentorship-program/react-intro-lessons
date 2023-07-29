@@ -1,10 +1,11 @@
 import { useState } from 'react'
+import Student from './Student'
 
 function App() {
 	const [studentsArray, setStudentsArray] = useState([
-		{ name: 'John', age: 21 },
-		{ name: 'Jane', age: 15 },
-		{ name: 'Ruth', age: 35 },
+		{ name: 'John', age: 21, city: 'Boca', drive: false, family: { pet1: '🐠', pet2: '🐶' } },
+		{ name: 'Jane', age: 15, city: 'Miami', drive: true, family: { pet1: '🐠' } },
+		{ name: 'Ruth', age: 35, city: 'Del Ray', drive: true, family: { pet1: '🐶' } },
 	])
 
 	function addStudent() {
@@ -18,9 +19,14 @@ function App() {
 			<button onClick={() => addStudent()}>Add Student</button>
 			<h2>List Students</h2>
 			<ul>
-				{studentsArray.map(x => (
-					<li key={x.name}>{x.name}</li>
-				))}
+				{studentsArray &&
+					studentsArray.map(eachStudent => (
+						// <li key={eachStudent.name}>{eachItem.name}</li>
+
+						// each item is the entire object per item in the array
+						<Student studentInfo={eachStudent} />
+						// <Student name={eachItem.name} age={eachItem.age} city={eachItem.city} drive={eachItem.drive} />
+					))}
 			</ul>
 		</div>
 	)
